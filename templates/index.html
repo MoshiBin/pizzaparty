@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="pizzaparty">
 <head>
   <meta charset="UTF-8">
   <title></title>
   <link rel="stylesheet" href="{{ url_for("static", filename="css/bootstrap.min.css")}}">
   <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+  <script src="{{ url_for("static", filename="js/angular.min.js")}}"></script>
   <style>
-    navbar {
-      height: 100px;
+    .navbar {
+      height: 110px;
+      background: #F7E7C6; 
+    }
+    .container-fluid {
+      padding-right: 0;
+      padding-left: 0;
     }
   </style>
 </head>
-<body>
+<body ng-controller="MainCtrl">
   <div class="container-fluid">
     <div class="row-fluid">
       <nav class="navbar navbar-default" role="navigation">
@@ -24,6 +30,15 @@
         </div>
       </nav>
     </div> <!-- row-fluid -->  
-  </div>
+    <div class="row-fluid">
+      <ul>
+        <li ng-repeat="member in members">
+        <p>{{member.name}}</p>
+        <p>{{member.slices}}</p>
+        <p>{{member.toppings}}</p>
+        </li>
+      </ul>  
+    </div>
+    </div>
 </body>
 </html>
