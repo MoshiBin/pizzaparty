@@ -8,7 +8,10 @@ def index():
 @app.route("/pizza")
 def get_pizza():
     return jsonify(members=[
-        {"name": "moshi", "slices": 1, "toppings": ["Plain", "Olives"]},
+        {"name": "Moshi", "slices": 1, "toppings": ["Mushrooms", "Olives"]},
+        {"name": "Liat", "slices": 1, "toppings": ["Eggplant", "Olives"]},
+        {"name": "Ofir", "slices": 3, "toppings": ["Mushrooms"]},
+        {"name": "Thrall", "slices": 7, "toppings": ["Eggplant", "Mushrooms"]},
     ])
 
 if __name__ == "__main__":
