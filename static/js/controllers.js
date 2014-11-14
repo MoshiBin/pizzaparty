@@ -1,4 +1,4 @@
-var pizzaApp = angular.module('pizzaparty', []);
+var pizzaApp = angular.module('pizzaparty', ['ui.select']);
 
 pizzaApp.factory("members", function() {
   var members = [];
@@ -18,7 +18,41 @@ pizzaApp.factory("members", function() {
   };
 });
 
+pizzaApp.filter("propsFilter", function() {
+  return function(items, props) {
+    var out = [];
+    if (angular.isArray(items)) {
+      items.forEach(function(item) {
+        var itemMatches = false;
+
+        var keys = Object.keys(props);
+        for (var i = 0; i < keys.length; i++) {
+          var prop = keys[i];
+          var text = props[prop].toLowerCase();
+          if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+            itemMatches = true;
+            break;
+          }
+        }
+
+        if (itemMatches) {
+          out.push(item);
+        }
+      });
+    } else {
+      // Let the output be the input untouched
+      out = items;
+    }
+
+    return out;
+  };
+});
+
 pizzaApp.controller('MainCtrl', function ($scope, $http, members) {
+  $scope.toppings = [
+    {id: 0, name: "Pepperoni"},
+    {id: 1, name: "Mushrooms"},
+    ];
   members.subscribe($scope, function(member) {
     $scope.members = members.getMembers();
   });
@@ -57,4 +91,8 @@ pizzaApp.directive('ngEnter', function() {
             }
         });
     };
+});
+
+pizzaApp.config(function(uiSelectConfig) {
+  uiSelectConfig.theme = "bootstrap";
 });
