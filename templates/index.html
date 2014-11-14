@@ -97,7 +97,10 @@
           <span data-ng-show="loading"> Generating <i class="fa fa-spinner fa-spin"></i> </span>
         </button>
       </div>
-      <div data-ng-show="pizzas"></div>
+      <p ng-repeat="slice in pizzas.response">
+        {{slice[0]}} - {{slice[1]}}
+        
+      </p>
       <div data-ng-hide="pizzas">{{pizzas.response.toString()}}</div>
       {% endraw %}
     </div>
