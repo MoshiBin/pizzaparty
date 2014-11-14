@@ -7,8 +7,7 @@ pizzaApp.factory("members", function() {
   return {
     getMembers: function() {return members;},
     subscribe: function(scope, callback) {
-      notifies.push(callback);
-    },
+      notifies.push(callback); },
     addMember: function(member) {
       members.push(member);
       notifies.forEach(function(notf) {
@@ -19,6 +18,8 @@ pizzaApp.factory("members", function() {
 });
 
 pizzaApp.controller('MainCtrl', function ($scope, $http, members) {
+  //hiding spinner
+  $scope.loading = false ; 
   members.subscribe($scope, function(member) {
     $scope.members = members.getMembers();
   });
@@ -32,14 +33,27 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, members) {
   };
 
   $scope.getPizza = function() {
+    // starting spinner
+    $scope.loading = true ; 
+
     $http.post("/pizza", {members: $scope.members}).
       success(function(data, status, headers, config) {
         console.log("Success");
         console.log(data);
+        alert(data);
+
+        // removing spinner
+        $scope.cancel = function(){
+            $scope.loading = false ; 
+        }
       }).
       error(function(data, status, headers, config) {
         console.log("Failure");
         console.log(data);
+        // removing spinner
+        $scope.cancel = function(){
+            $scope.loading = false ; 
+        }
       });
     return members.toString();
   };

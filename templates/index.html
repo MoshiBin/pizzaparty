@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title></title>
   <link rel="stylesheet" href="{{ url_for("static", filename="css/bootstrap.min.css")}}">
+  <link rel="stylesheet" href="{{ url_for("static", filename="css/font-awesome.min.css")}}">
   <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
   <script src="{{ url_for("static", filename="js/angular.min.js")}}"></script>
   <script src="{{ url_for("static", filename="js/controllers.js")}}"></script>
@@ -84,7 +85,10 @@
       </form>
       </table>  
       <div class="center">
-        <button class="btn btn-huge btn-info" ng-click="getPizza()">Generate Order</button>
+        <button class="btn btn-huge btn-info" ng-click="getPizza()">
+          <span data-ng-hide="loading">Generate Order </span>
+          <span data-ng-show="loading"> Generating <i class="fa fa-spinner fa-spin"></i> </span>
+        </button>
       </div>
       {% endraw %}
     </div>
