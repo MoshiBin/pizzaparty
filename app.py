@@ -16,7 +16,10 @@ def get_pizza():
     members = data["members"]
     clean_members = []
     for member in members:
-        clean_members.append([member["name"], int(member["slices"]), member["toppings"]])
+        member_toppings = []
+        for topping in member["toppings"]:
+            member_toppings.append(topping["name"])
+        clean_members.append([member["name"], int(member["slices"]), member_toppings])
     order = generate(clean_members)
     print order
     return jsonify(response=order)

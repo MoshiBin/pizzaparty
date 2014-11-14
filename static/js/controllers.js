@@ -74,6 +74,8 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
     return toppings_names.join(", ");
   };
 
+  $scope.pizzas = {};
+
   $scope.addMember = function(newmember) {
     console.log(newmember);
     members.addMember(angular.copy(newmember));
@@ -88,19 +90,17 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
         console.log("Success");
         console.log(data);
 
+        $scope.pizzas = data;
+
         // removing spinner
-        $scope.cancel = function(){
-            $scope.loading = false ; 
-        }
+        $scope.loading = false ; 
       }).
       error(function(data, status, headers, config) {
         // removing spinner
-        $scope.cancel = function(){
-            $scope.loading = false ; 
+        $scope.loading = false ; 
 
         console.log("Failure");
         console.log(data);
-        }
       });
     return members.toString();
   };
