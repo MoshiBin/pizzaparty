@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <title></title>
   <link rel="stylesheet" href="{{ url_for("static", filename="css/bootstrap.min.css")}}">
+  <link rel="stylesheet" href="{{ url_for("static", filename="css/select.min.css")}}">
   <link rel="stylesheet" href="{{ url_for("static", filename="css/font-awesome.min.css")}}">
   <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
   <script src="{{ url_for("static", filename="js/angular.min.js")}}"></script>
+  <script src="{{ url_for("static", filename="js/select.min.js")}}"></script>
   <script src="{{ url_for("static", filename="js/controllers.js")}}"></script>
 
   <style>
@@ -80,6 +82,15 @@
           <td>
             <input type="text" placeholder="Anything goes" ng-enter="addMember(newmember)" ng-model="newmember.toppings" ng-list class="form-control last-input pull-left">
             <button class="btn btn-info pull-left" ng-click="addMember(newmember)" ng-disabled="memberForm.$invalid">Add</button>
+            <ui-select multiple ng-model="newmember.toppings" theme="bootstrap" ng-disabled="disabled" class="last-input">
+            <ui-select-match placeholder="Select toppings...">{{$item.name}}</ui-select-match>
+              <ui-select-choices repeat="topping in toppings">
+                <div ng-bind-html="trustAsHtml((topping.name | highlight: $select.search))"></div>
+                {{topping.name}}
+              </ui-select-choices>
+            </ui-select>
+            <span>Toppings are: {{newmember.toppings}}</span>
+            <button class="btn btn-info pull-left" ng-click="addMember(newmember)" ng-disabled="memberFotm.$invalid">Add</button>
             </td>
         </tr>
       </form>
