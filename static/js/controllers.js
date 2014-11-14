@@ -89,7 +89,6 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
   });
 
   $scope.prettytoppings = function (toppings) {
-    console.log(toppings);
     var toppings_names = [];
     toppings.forEach(function (topping) {
         toppings_names.push(topping.name);
@@ -100,7 +99,6 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
   $scope.pizzas = {};
 
   $scope.addMember = function(newmember) {
-    console.log(newmember);
     members.addMember(angular.copy(newmember));
   };
 
@@ -110,9 +108,6 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
 
     $http.post("/pizza", {members: $scope.members}).
       success(function(data, status, headers, config) {
-        console.log("Success");
-        console.log(data);
-
         $scope.pizzas = data;
 
         // removing spinner
@@ -121,9 +116,6 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
       error(function(data, status, headers, config) {
         // removing spinner
         $scope.loading = false ; 
-
-        console.log("Failure");
-        console.log(data);
       });
     return members.toString();
   };
