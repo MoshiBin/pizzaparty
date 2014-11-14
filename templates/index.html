@@ -5,6 +5,7 @@
   <title></title>
   <link rel="stylesheet" href="{{ url_for("static", filename="css/bootstrap.min.css")}}">
   <link rel="stylesheet" href="{{ url_for("static", filename="css/select.min.css")}}">
+  <link rel="stylesheet" href="{{ url_for("static", filename="css/font-awesome.min.css")}}">
   <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
   <script src="{{ url_for("static", filename="js/angular.min.js")}}"></script>
   <script src="{{ url_for("static", filename="js/select.min.js")}}"></script>
@@ -72,24 +73,31 @@
         <tr ng-repeat="member in members">
         <td>{{member.name}}</td>
         <td>{{member.slices}}</td>
-        <td>{{prettytoppings(member.toppings)}}</td>
+        <td>{{member.toppings}}</td>
         </tr>
         <tr>
-          <td><input type="text" placeholder="Name" ng-model="newmember.name" class="form-control"></td>
-          <td><input type="text" placeholder="Slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
+          <form name="memberForm">
+          <td><input type="text" placeholder="What's your name?" ng-model="newmember.name" required class="form-control"></td>
+          <td><input type="number" placeholder="Number of slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
           <td>
-            <ui-select multiple ng-model="newmember.toppings" ng-enter="addMember(newmember)" theme="bootstrap" ng-disabled="disabled">
+            <ui-select multiple ng-model="newmember.toppings" theme="bootstrap" ng-disabled="disabled" class="last-input">
             <ui-select-match placeholder="Select toppings...">{{$item.name}}</ui-select-match>
-              <ui-select-choices repeat="topping in toppings | propsFilter:{name: $select.search}">
+              <ui-select-choices repeat="topping in toppings">
+                <div ng-bind-html="trustAsHtml((topping.name | highlight: $select.search))"></div>
                 {{topping.name}}
               </ui-select-choices>
             </ui-select>
-            <button class="btn btn-info pull-left" ng-click="addMember(newmember)">Add</button>
+            <span>Toppings are: {{newmember.toppings}}</span>
+            <button class="btn btn-info pull-left" ng-click="addMember(newmember)" ng-disabled="memberFotm.$invalid">Add</button>
             </td>
         </tr>
+      </form>
       </table>  
       <div class="center">
-        <button class="btn btn-huge btn-info" ng-click="getPizza()">Generate Order</button>
+        <button class="btn btn-huge btn-info" ng-click="getPizza()">
+          <span data-ng-hide="loading">Generate Order </span>
+          <span data-ng-show="loading"> Generating <i class="fa fa-spinner fa-spin"></i> </span>
+        </button>
       </div>
       {% endraw %}
     </div>

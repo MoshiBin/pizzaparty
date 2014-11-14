@@ -7,8 +7,7 @@ pizzaApp.factory("members", function() {
   return {
     getMembers: function() {return members;},
     subscribe: function(scope, callback) {
-      notifies.push(callback);
-    },
+      notifies.push(callback); },
     addMember: function(member) {
       members.push(member);
       notifies.forEach(function(notf) {
@@ -48,11 +47,18 @@ pizzaApp.filter("propsFilter", function() {
   };
 });
 
-pizzaApp.controller('MainCtrl', function ($scope, $http, members) {
+pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
   $scope.toppings = [
     {id: 0, name: "Pepperoni"},
     {id: 1, name: "Mushrooms"},
     ];
+  //hiding spinner
+  $scope.loading = false ; 
+
+  // making us safe
+  $scope.trustAsHtml = function(value) {
+        return $sce.trustAsHtml(value);
+  };
   members.subscribe($scope, function(member) {
     $scope.members = members.getMembers();
   });
@@ -66,14 +72,27 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, members) {
   };
 
   $scope.getPizza = function() {
+    // starting spinner
+    $scope.loading = true ; 
+
     $http.post("/pizza", {members: $scope.members}).
       success(function(data, status, headers, config) {
         console.log("Success");
         console.log(data);
+
+        // removing spinner
+        $scope.cancel = function(){
+            $scope.loading = false ; 
+        }
       }).
       error(function(data, status, headers, config) {
+        // removing spinner
+        $scope.cancel = function(){
+            $scope.loading = false ; 
+
         console.log("Failure");
         console.log(data);
+        }
       });
     return members.toString();
   };
