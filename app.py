@@ -1,22 +1,25 @@
 from flask import Flask, render_template, jsonify, request
+from pizza_generator import generate
 import json
 app = Flask(__name__)
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
+
 @app.route("/pizza", methods=["POST", "GET"])
 def get_pizza():
-    members = json.loads(request.args.get("members"))
-    print members
-    return jsonify(response=members)
-    return jsonify(members=[
-        {"name": "Moshi", "slices": 1, "toppings": ["Mushrooms", "Olives"]},
-        {"name": "Liat", "slices": 1, "toppings": ["Eggplant", "Olives"]},
-        {"name": "Ofir", "slices": 3, "toppings": ["Mushrooms"]},
-        {"name": "Thrall", "slices": 7, "toppings": ["Eggplant", "Mushrooms"]},
-    ])
+    data = json.loads(request.data)
+    print data["members"]
+    members = data["members"]
+    clean_members = []
+    for member in members:
+        clean_members.append([member["name"], int(member["slices"]), member["toppings"]])
+    order = generate(clean_members)
+    print order
+    return jsonify(response=order)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")

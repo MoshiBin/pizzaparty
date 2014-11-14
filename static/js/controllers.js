@@ -32,7 +32,7 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, members) {
   };
 
   $scope.getPizza = function() {
-    $http.get("/pizza", {params: {members: $scope.members}}).
+    $http.post("/pizza", {members: $scope.members}).
       success(function(data, status, headers, config) {
         console.log("Success");
         console.log(data);
