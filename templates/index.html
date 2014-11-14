@@ -73,13 +73,15 @@
         <td>{{prettytoppings(member.toppings)}}</td>
         </tr>
         <tr>
-          <td><input type="text" placeholder="Name" ng-model="newmember.name" class="form-control"></td>
-          <td><input type="text" placeholder="Slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
+          <form name="memberForm">
+          <td><input type="text" placeholder="What's your name?" ng-model="newmember.name" required class="form-control"></td>
+          <td><input type="number" placeholder="Number of slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
           <td>
-            <input type="text" placeholder="Toppings" ng-enter="addMember(newmember)" ng-model="newmember.toppings" ng-list class="form-control last-input pull-left">
-            <button class="btn btn-info pull-left" ng-click="addMember(newmember)">Add</button>
+            <input type="text" placeholder="Anything goes" ng-enter="addMember(newmember)" ng-model="newmember.toppings" ng-list class="form-control last-input pull-left">
+            <button class="btn btn-info pull-left" ng-click="addMember(newmember)" ng-disabled="memberFotm.$invalid">Add</button>
             </td>
         </tr>
+      </form>
       </table>  
       <div class="center">
         <button class="btn btn-huge btn-info" ng-click="getPizza()">Generate Order</button>
