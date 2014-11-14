@@ -12,11 +12,6 @@
     body {
       background: #303030;
     }
-    .btn-nice {
-      background: #1EAFEF;
-      color: white;
-      border-color: #0352AB;
-    }
     nav {
       height: 110px;
       background: #F7E7C6; 
@@ -81,12 +76,12 @@
           <td><input type="text" placeholder="Slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
           <td>
             <input type="text" placeholder="Toppings" ng-enter="addMember(newmember)" ng-model="newmember.toppings" ng-list class="form-control last-input pull-left">
-            <button class="btn btn-nice pull-left" ng-click="addMember(newmember)">Add</button>
+            <button class="btn btn-info pull-left" ng-click="addMember(newmember)">Add</button>
             </td>
         </tr>
       </table>  
       <div class="center">
-        <button class="btn btn-huge btn-nice">Generate Order</button>
+        <button class="btn btn-huge btn-info">Generate Order</button>
       </div>
       {% endraw %}
     </div>
