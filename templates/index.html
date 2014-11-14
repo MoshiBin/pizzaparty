@@ -77,21 +77,21 @@
         </tr>
         <tr>
           <form name="memberForm">
-            <td style="max-width: 100px"><input type="text" placeholder="What's your name?" ng-model="newmember.name" required class="form-control"></td>
-          <td style="max-width: 80px"><input type="number" placeholder="Number of slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
+            <td style="max-width: 140px"><input type="text" placeholder="What's your name?" ng-model="newmember.name" required class="form-control"></td>
+            <td style="max-width: 130px"><input type="number" placeholder="Number of slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
           <td>
-            <ui-select multiple ng-model="newmember.toppings" theme="bootstrap" ng-disabled="disabled" class="last-input">
-            <ui-select-match placeholder="Select toppings...">{{$item.name}}</ui-select-match>
+            <ui-select multiple ng-model="newmember.toppings" theme="bootstrap" ng-disabled="disabled" class="last-input" style="display: inline-block">
+              <ui-select-match placeholder="Select toppings...">{{$item.name}}</ui-select-match>
               <ui-select-choices repeat="topping in toppings">
                 <span ng-bind-html="trustAsHtml((topping.name | highlight: $select.search))"></span>
               </ui-select-choices>
             </ui-select>
             <button class="btn btn-info" ng-click="addMember(newmember)" ng-disabled="memberFotm.$invalid">Add</button>
-            <span>Toppings are: {{newmember.toppings}}</span>
             </td>
         </tr>
       </form>
       </table>  
+            <span>Toppings are: {{newmember.toppings}}</span>
       <div class="center">
         <button class="btn btn-huge btn-info" ng-click="getPizza()">
           <span data-ng-hide="loading">Generate Order </span>
