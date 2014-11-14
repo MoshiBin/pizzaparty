@@ -82,7 +82,7 @@
           <td>
             <ui-select multiple ng-model="newmember.toppings" theme="bootstrap" ng-disabled="disabled" class="last-input" style="display: inline-block">
               <ui-select-match placeholder="Select toppings...">{{$item.name}}</ui-select-match>
-              <ui-select-choices repeat="topping in toppings">
+              <ui-select-choices repeat="topping in toppings | propsFilter: {name: $select.search}">
                 <span ng-bind-html="trustAsHtml((topping.name | highlight: $select.search))"></span>
               </ui-select-choices>
             </ui-select>

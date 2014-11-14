@@ -55,6 +55,8 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
   //hiding spinner
   $scope.loading = false ; 
 
+  $scope.newmember = {};
+
   // making us safe
   $scope.trustAsHtml = function(value) {
         return $sce.trustAsHtml(value);
@@ -64,10 +66,12 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
   });
 
   $scope.prettytoppings = function (toppings) {
+    console.log(toppings);
     return toppings.join(", ");
   };
 
   $scope.addMember = function(newmember) {
+    console.log(newmember);
     members.addMember(angular.copy(newmember));
   };
 
