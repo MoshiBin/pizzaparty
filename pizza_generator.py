@@ -1,11 +1,5 @@
 from random import choice
 
-sample = [
-    ["Liat", 2, ("Plain",)],
-    ["Ofir", 3, ("Mushroom",)],
-    ["Moshi", 3, ("Mushroom", "Onion")],
-    ["Bakshi", 3, ("Pineapple", "Bulgarit", "Tomato")],
-]
 
 def generate(sample):
     def topping_rarity(topping, sample):
@@ -69,13 +63,10 @@ def generate(sample):
 
     order.sort(key=lambda x: x[1])
 
-#   from pprint import pprint
-#   for pizza in range(0, len(order), 8):
-#       print "Pizza:"
-#       print "======"
-#       pprint(order[pizza:pizza+8])
-#       print
-    return order
+   for pizza in range(0, len(order), 8):
+       pizzas = order[pizza:pizza+8]
+
+    return pizzas
 
 if __name__ == "__main__":
     print generate(sample)
