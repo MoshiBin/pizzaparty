@@ -62,7 +62,7 @@
 
     <div class="row-fluid">
       {% raw %}
-      <table class="table table-striped table-bordered">
+      <table class="table table-striped table-bordered table-responsive">
         <thead>
           <tr>
             <th>Name</th>
@@ -71,14 +71,14 @@
           </tr>
         </thead>
         <tr ng-repeat="member in members">
-        <td>{{member.name}}</td>
-        <td>{{member.slices}}</td>
-        <td>{{member.toppings}}</td>
+        <td style="max-width: 100px">{{member.name}}</td>
+        <td style="max-width: 80px">{{member.slices}}</td>
+        <td>{{prettytoppings(member.toppings)}}</td>
         </tr>
         <tr>
           <form name="memberForm">
-          <td><input type="text" placeholder="What's your name?" ng-model="newmember.name" required class="form-control"></td>
-          <td><input type="number" placeholder="Number of slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
+            <td style="max-width: 100px"><input type="text" placeholder="What's your name?" ng-model="newmember.name" required class="form-control"></td>
+          <td style="max-width: 80px"><input type="number" placeholder="Number of slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
           <td>
             <ui-select multiple ng-model="newmember.toppings" theme="bootstrap" ng-disabled="disabled" class="last-input">
             <ui-select-match placeholder="Select toppings...">{{$item.name}}</ui-select-match>
