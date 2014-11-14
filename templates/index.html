@@ -98,10 +98,12 @@
           <span data-ng-show="loading"> Generating <i class="fa fa-spinner fa-spin"></i> </span>
         </button>
       </div>
-      <h3 ng-repeat="pizza in pizzas.response">Pizza</h3>
+      <div ng-repeat="pizza in pizzas.response">
+        <h3>Pizza</h3>
         <ul>
           <li ng-repeat="slice in pizza">{{slice[0]}} - {{slice[1]}}</li>
         </ul>
+      </div>
         
       </p>
       <div data-ng-hide="pizzas">{{pizzas.response.toString()}}</div>
