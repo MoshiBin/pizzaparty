@@ -67,7 +67,11 @@ pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
 
   $scope.prettytoppings = function (toppings) {
     console.log(toppings);
-    return toppings.join(", ");
+    var toppings_names = [];
+    toppings.forEach(function (topping) {
+        toppings_names.push(topping.name);
+    });
+    return toppings_names.join(", ");
   };
 
   $scope.addMember = function(newmember) {
