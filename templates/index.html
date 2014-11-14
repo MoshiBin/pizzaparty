@@ -71,14 +71,14 @@
           </tr>
         </thead>
         <tr ng-repeat="member in members">
-        <td style="max-width: 100px">{{member.name}}</td>
-        <td style="max-width: 80px">{{member.slices}}</td>
+        <td>{{member.name}}</td>
+        <td>{{member.slices}}</td>
         <td>{{prettytoppings(member.toppings)}}</td>
         </tr>
         <tr>
           <form name="memberForm">
-            <td style="max-width: 140px"><input type="text" placeholder="What's your name?" ng-model="newmember.name" required class="form-control"></td>
-            <td style="max-width: 130px"><input type="number" placeholder="Number of slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
+            <td style="max-width: 200px"><input type="text" placeholder="What's your name?" ng-model="newmember.name" required class="form-control"></td>
+            <td style="max-width: 150px"><input type="number" placeholder="Number of slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
           <td>
             <ui-select multiple ng-model="newmember.toppings" theme="bootstrap" ng-disabled="disabled" class="last-input" style="display: inline-block">
               <ui-select-match placeholder="Select toppings...">{{$item.name}}</ui-select-match>
