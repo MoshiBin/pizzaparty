@@ -49,9 +49,32 @@ pizzaApp.filter("propsFilter", function() {
 
 pizzaApp.controller('MainCtrl', function ($scope, $http, $sce, members) {
   $scope.toppings = [
-    {id: 0, name: "Pepperoni"},
-    {id: 1, name: "Mushrooms"},
-    ];
+    {id: 1, name: "אנשובי"},
+    {id: 2, name: "בשר בקר"},
+    {id: 3, name: "זיתים שחורים"},
+    {id: 4, name: "זיתים ירוקים"},
+    {id: 5, name: "פטריות טריות"},
+    {id: 6, name: "טונה"},
+    {id: 7, name: "חצילים"},
+    {id: 8, name: "פלפל חלפיניו"},
+    {id: 10, name: "פסטרמה"},
+    {id: 11, name: "אננס"},
+    {id: 12, name: "עגבניות"},
+    {id: 13, name: "תירס"},
+    {id: 14, name: "פלפלים קלויים"},
+    {id: 15, name: "אקסטרה גבינה"},
+    {id: 16, name: "גבינה בולגרית"},
+    {id: 17, name: "פלפל ירוק"},
+    {id: 18, name: "בצל"},
+    {id: 19, name: "פפרוני"},
+    {id: 20, name: "שום"},
+    {id: 21, name: "קבנוס"},
+    {id: 26, name: "בולגרית קוביות"},
+    {id: 27, name: "גבינת עיזים"},
+    {id: 28, name: "כתף בקר"},
+    {id: 30, name: "זית קלמטה"},
+    {id: 31, name: "גורגונזולה"},
+  ];
   //hiding spinner
   $scope.loading = false ; 
 
