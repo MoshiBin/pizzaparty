@@ -63,8 +63,8 @@ def generate(sample):
 
     order.sort(key=lambda x: x[1])
 
-   for pizza in range(0, len(order), 8):
-       pizzas = order[pizza:pizza+8]
+    for pizza in range(0, len(order), 8):
+        pizzas = order[pizza:pizza+8]
 
     return pizzas
 
