@@ -29,6 +29,10 @@
     nav img {
       margin-top: 10px;
     }
+    .last-input {
+      width: 80% !important;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body ng-controller="MainCtrl">
@@ -42,14 +46,24 @@
       {% raw %}
       <table class="table table-striped table-bordered">
         <thead>
-          <th>Name</th>
-          <th>Slices</th>
-          <th>Toppings</th>
+          <tr>
+            <th>Name</th>
+            <th>Slices</th>
+            <th>Toppings</th>
+          </tr>
         </thead>
         <tr ng-repeat="member in members">
         <td>{{member.name}}</td>
         <td>{{member.slices}}</td>
         <td>{{prettytoppings(member.toppings)}}</td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="Name" ng-model="newmember.name" class="form-control"></td>
+          <td><input type="text" placeholder="Slices" ng-model="newmember.slices" class="form-control"></td>
+          <td>
+            <input type="text" placeholder="Toppings" ng-model="newmember.toppings" ng-list class="form-control last-input pull-left">
+            <button class="btn btn-primary pull-left" ng-click="addMember(newmember)">Add</button>
+            </td>
         </tr>
       </table>  
       {% endraw %}
