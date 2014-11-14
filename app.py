@@ -1,12 +1,16 @@
-from flask import Flask,render_template, jsonify
+from flask import Flask, render_template, jsonify, request
+import json
 app = Flask(__name__)
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/pizza")
+@app.route("/pizza", methods=["POST", "GET"])
 def get_pizza():
+    members = json.loads(request.args.get("members"))
+    print members
+    return jsonify(response=members)
     return jsonify(members=[
         {"name": "Moshi", "slices": 1, "toppings": ["Mushrooms", "Olives"]},
         {"name": "Liat", "slices": 1, "toppings": ["Eggplant", "Olives"]},

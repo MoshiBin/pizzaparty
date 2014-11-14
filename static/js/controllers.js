@@ -18,7 +18,7 @@ pizzaApp.factory("members", function() {
   };
 });
 
-pizzaApp.controller('MainCtrl', function ($scope, members) {
+pizzaApp.controller('MainCtrl', function ($scope, $http, members) {
   members.subscribe($scope, function(member) {
     $scope.members = members.getMembers();
   });
@@ -29,6 +29,19 @@ pizzaApp.controller('MainCtrl', function ($scope, members) {
 
   $scope.addMember = function(newmember) {
     members.addMember(angular.copy(newmember));
+  };
+
+  $scope.getPizza = function() {
+    $http.get("/pizza", {params: {members: $scope.members}}).
+      success(function(data, status, headers, config) {
+        console.log("Success");
+        console.log(data);
+      }).
+      error(function(data, status, headers, config) {
+        console.log("Failure");
+        console.log(data);
+      });
+    return members.toString();
   };
 });
 
