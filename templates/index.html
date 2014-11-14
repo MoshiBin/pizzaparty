@@ -33,6 +33,7 @@
     }
     nav img {
       margin-top: 10px;
+      margin-left: 20px;
     }
     .last-input {
       width: 80% !important;
@@ -97,8 +98,10 @@
           <span data-ng-show="loading"> Generating <i class="fa fa-spinner fa-spin"></i> </span>
         </button>
       </div>
-      <p ng-repeat="slice in pizzas.response">
-        {{slice[0]}} - {{slice[1]}}
+      <h3 ng-repeat="pizza in pizzas.response">Pizza</h3>
+        <ul>
+          <li ng-repeat="slice in pizza">{{slice[0]}} - {{slice[1]}}</li>
+        </ul>
         
       </p>
       <div data-ng-hide="pizzas">{{pizzas.response.toString()}}</div>
