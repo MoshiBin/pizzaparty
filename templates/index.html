@@ -73,9 +73,9 @@
         </tr>
         <tr>
           <td><input type="text" placeholder="Name" ng-model="newmember.name" class="form-control"></td>
-          <td><input type="text" placeholder="Slices" ng-model="newmember.slices" class="form-control"></td>
+          <td><input type="text" placeholder="Slices" ng-enter="addMember(newmember)" ng-model="newmember.slices" class="form-control"></td>
           <td>
-            <input type="text" placeholder="Toppings" ng-model="newmember.toppings" ng-list class="form-control last-input pull-left">
+            <input type="text" placeholder="Toppings" ng-enter="addMember(newmember)" ng-model="newmember.toppings" ng-list class="form-control last-input pull-left">
             <button class="btn btn-primary pull-left" ng-click="addMember(newmember)">Add</button>
             </td>
         </tr>
